@@ -1,7 +1,11 @@
+// Really should not have named it main...
 public class main {
     public enum state { START, ZERO, ONE, DEAD}
 
-    public static void check_state(String str) {
+    // Empty constructor
+    public main(){}
+
+    public void check_state(String str) {
         char[] s = str.toCharArray();
         state current_state = state.START;
         int i = 0;
@@ -14,9 +18,7 @@ public class main {
         for (char c: s) {
             boolean cero = Character.toString(c).matches("0");
             boolean uno = Character.toString(c).matches("1");
-            if (!cero && !uno) { // Probably redundant now.
-                current_state = state.DEAD;
-            } else if(cero && (current_state == state.START || current_state == state.ZERO)) {
+            if(cero && (current_state == state.START || current_state == state.ZERO)) {
                 if (i == 0 || i == 1) {
                     current_state = state.ZERO;
                     i = 1;
@@ -51,7 +53,8 @@ public class main {
         }
     }
 
-    public static void main(String[] args) {
+    // Break this out into unit tests
+    public void test() {
         String test_1 = "0011";
         String test_2 = "10011";
         String test_3 = "001011";
@@ -65,5 +68,10 @@ public class main {
         check_state(test_4);
         check_state(test_5);
         check_state(test_6);
+    }
+
+    public static void main(String[] args) {
+        main m = new main();
+        m.test();
     }
 }
