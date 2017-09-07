@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Really should not have named it main...
 public class main {
     public enum state { START, ZERO, ONE, DEAD}
@@ -70,8 +72,40 @@ public class main {
         check_state(test_6);
     }
 
+    public static void displayMenu(){
+        System.out.println("What would you like to do?");
+        System.out.println("1) Input strings\n2) Run tests\n3) Quit");
+    }
+
     public static void main(String[] args) {
         main m = new main();
-        m.test();
+        int choice = 0;
+
+        while (choice != 3) {
+            Scanner scanner = new Scanner(System.in);
+            displayMenu();
+            choice = scanner.nextInt();
+
+            if (choice == 2) {
+                m.test();
+            } else if (choice == 3) {
+                System.out.println("Thanks!");
+            } else {
+                while (scanner.hasNextLine()) {
+                    System.out.println("Please input your string.");
+                    String line = scanner.next();
+                    m.check_state(line);
+
+                    System.out.println("Would you like to input another string?\n1) Yes\n2) No");
+                    choice = scanner.nextInt();
+
+                    if(choice == 2) {
+                        System.out.println("Thanks!");
+                        choice = 3;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
