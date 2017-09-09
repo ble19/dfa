@@ -96,20 +96,25 @@ public class dfa {
     public static void main(String[] args) {
         dfa dfaObj = new dfa();
         int menuChoice = 0;
+        String line;
         Scanner scanner = new Scanner(System.in);
 
         while (menuChoice != 3) {
             displayMenu();
             menuChoice = scanner.nextInt();
-            System.out.println("\n");
+            scanner.nextLine();
            
             // enter the switch statement based on the user's choice
             // case 1: Input strings, case 2: test sample strings, case 3: quit the application
             switch(menuChoice){
                 case 1:
                      System.out.println("Please input your string.");
-                     String line = scanner.next();
-                     dfaObj.check_state(line);
+                     line = scanner.nextLine();
+                     if (line.equals("")){
+                         dfaObj.check_state("");
+                     } else {
+                         dfaObj.check_state(line);
+                     }
                      break;
                 case 2:
                     dfaObj.testStrings();
