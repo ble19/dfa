@@ -99,6 +99,7 @@ public class dfa {
         String line;
         Scanner scanner = new Scanner(System.in);
 
+        try{
         while (menuChoice != 3) {
             displayMenu();
             menuChoice = scanner.nextInt();
@@ -125,6 +126,11 @@ public class dfa {
                     System.out.println("Invalid choice. Choose again");
                     continue;
             }
+        }
+        }catch(InputMismatchException e) {
+            System.err.println("InputMismatchException: The menu input is not a valid integer");
+        }finally{
+            scanner.close();
         }
     }
 }
